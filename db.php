@@ -7,5 +7,6 @@ define("database","quiz");
 $conn=mysqli_connect(server,username,password,database);
 if(!$conn) {
  echo "<pre>";
-echo "Connection failed: " . mysqli_connect_error($conn);
+echo "Connection failed: " . mysqli_connect_error();
 }
+?>

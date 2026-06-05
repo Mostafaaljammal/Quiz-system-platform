@@ -11,6 +11,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: row;
+    padding: 20px;
 }
 
 h1 {
@@ -43,4 +45,10 @@ button {
 button:hover {
     background: #00a8cc;
     transform: translateY(-2px);
+}
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
 }

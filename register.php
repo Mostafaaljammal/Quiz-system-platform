@@ -2,12 +2,6 @@
 include "db.php";
 session_start();
 
-$message = '';
-$message_type = '';
-
-$remembered_username = isset($_COOKIE["username"]) ? $_COOKIE["username"] : "";
-$remembered_email = isset($_COOKIE["email"]) ? $_COOKIE["email"] : "";
-
 if (isset($_POST["submit"])) {
 
     $username = $_POST["username"];
@@ -21,19 +15,8 @@ if (isset($_POST["submit"])) {
 
         $_SESSION["username"] = $username;
         $_SESSION["email"] = $email;
-
-        if (isset($_POST["remember"])) {
-            setcookie("username", $username, time() + (86400 * 30), "/");
-            setcookie("email", $email, time() + (86400 * 30), "/");
-        } else {
-            setcookie("username", "", time() - 3600, "/");
-            setcookie("email", "", time() - 3600, "/");
-        }
-
-        $message = "Account created successfully! Redirecting...";
-        $message_type = "success";
-
-        header("refresh:2; url=dashboard.php");
+        $_SESSION["user_id"] = mysqli_insert_id($conn);
+        header("Location: dashboard.php");
         exit();
     } else {
         $message = "Error: " . mysqli_error($conn);
@@ -55,16 +38,9 @@ if (isset($_POST["submit"])) {
 <body>
     <form method="POST" action="">
         <h2>REGISTER PAGE</h2>
-
-        <?php if ($message): ?>
-            <div class="alert alert-<?php echo $message_type; ?>">
-                <?php echo $message; ?>
-            </div>
-        <?php endif; ?>
-
         <label>USERNAME:</label>
         <input type="text" name="username"
-            value="<?php echo $remembered_username; ?>"
+            value=""
             placeholder="Choose a username" required>
 
         <label>PASSWORD:</label>
@@ -73,13 +49,8 @@ if (isset($_POST["submit"])) {
 
         <label>EMAIL:</label>
         <input type="email" name="email"
-            value="<?php echo $remembered_email; ?>"
+            value=""
             placeholder="Enter your email" required>
-
-        <div class="remember-container">
-            <input type="checkbox" name="remember" id="remember">
-            <label for="remember">Remember Me</label>
-        </div>
 
         <button type="submit" name="submit">REGISTER</button>
 
