@@ -6,7 +6,7 @@ if(isset($_SESSION['user_id'])){
 }
 
 ?>
-<link rel="stylesheet" href="index.css">
+<link rel="stylesheet" href="assets/index.css">
 <div style="text-align: center;">
 <form action="" method="post"></form>
     <h1>🎯 Quiz System Platform</h1>

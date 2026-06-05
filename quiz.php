@@ -11,7 +11,7 @@ $result = mysqli_query($conn, "SELECT id, question_text, option_a, option_b, opt
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz System</title>
-    <link rel="stylesheet" href="quiz.css">
+    <link rel="stylesheet" href="assets/quiz.css">
 </head>
 
 <body>

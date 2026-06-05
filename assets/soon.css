@@ -1,0 +1,62 @@
+   body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: white;
+            font-size: 60px;
+            animation: float 2s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(255,255,255,0.4);
+        }
+
+        p {
+            color: #ddd;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 18px;
+            animation: fade 3s ease-in-out infinite;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+    
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes fade {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+
+       
+        .circle {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: move 6s linear infinite;
+        }
+
+        @keyframes move {
+            0% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-100px) scale(1.2); }
+            100% { transform: translateY(0px) scale(1); }
+        }
+
+        .c1 { top: 10%; left: 20%; }
+        .c2 { top: 60%; left: 70%; animation-delay: 2s; }
+        .c3 { top: 30%; left: 80%; animation-delay: 4s; }

@@ -1,4 +1,11 @@
 <?php
+// Student answers + Database answers
+//         ↓
+//      Compare
+//         ↓
+//    Correct count
+//         ↓
+//       Score %
 include "db.php";
 
 if (!isset($_POST['submit'])) {
@@ -8,8 +15,8 @@ if (!isset($_POST['submit'])) {
 
 $answers = $_POST['answer'] ?? [];
 
-
-$result = mysqli_query($conn, "SELECT id, question_text, correct_answer FROM questions");
+$sql="SELECT id, question_text, correct_answer FROM questions";
+$result = mysqli_query($conn, $sql);
 
 $total = 0;
 $correct = 0;
@@ -34,7 +41,7 @@ $score = ($total > 0) ? round(($correct / $total) * 100) : 0;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Result</title>
-    <link rel="stylesheet" href="result.css">
+    <link rel="stylesheet" href="assets/result.css">
 </head>
 <body>
 

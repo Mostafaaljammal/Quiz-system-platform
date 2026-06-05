@@ -54,7 +54,7 @@ if (isset($_POST["submit"])) {
 <head>
     <meta charset="UTF-8">
     <title>Login - Quiz Platform</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/styles.css">
 </head>
 
 <body>
