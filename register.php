@@ -8,19 +8,31 @@ if (isset($_POST["submit"])) {
     $password = $_POST["password"];
     $email = $_POST["email"];
 
-    $sql = "INSERT INTO users (username, password, email) 
-            VALUES ('$username', '$password', '$email')";
 
-    if (mysqli_query($conn, $sql)) {
+    $confirm = "SELECT * FROM users WHERE username='$username' OR email='$email'";
+    $result = mysqli_query($conn, $confirm);
 
-        $_SESSION["username"] = $username;
-        $_SESSION["email"] = $email;
-        $_SESSION["user_id"] = mysqli_insert_id($conn);
-        header("Location: dashboard.php");
+    if (mysqli_num_rows($result) > 0) {
+        echo "Username or email already exists";
+        header("Refresh: 2; url=login.php");
         exit();
     } else {
-        $message = "Error: " . mysqli_error($conn);
-        $message_type = "error";
+
+
+        $sql = "INSERT INTO users (username, password, email) 
+                VALUES ('$username', '$password', '$email')";
+
+        if (mysqli_query($conn, $sql)) {
+
+            $_SESSION["username"] = $username;
+            $_SESSION["email"] = $email;
+            $_SESSION["user_id"] = mysqli_insert_id($conn);
+
+            header("Location: dashboard.php");
+            exit();
+        } else {
+            echo "Error: " . mysqli_error($conn);
+        }
     }
 }
 ?>
