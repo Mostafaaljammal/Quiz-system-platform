@@ -29,14 +29,19 @@ if (isset($_POST["submit"])) {
         $_SESSION["user_id"] = $row["id"];
         $_SESSION["username"] = $row["username"];
         $_SESSION["email"] = $row["email"];
+ 
         echo "<pre>";
         print_r($_SESSION);
         echo "</pre>";
 
         if (isset($_POST["remember"])) {
             setcookie("username", $username, time() + (86400 * 30), "/");
+            setcookie("email", $email, time() + (86400 * 30), "/");
+       
         } else {
             setcookie("username", "", time() - 3600, "/");
+            setcookie("email", "", time() - 3600, "/");
+        
         }
 
         header("Location: dashboard.php");
